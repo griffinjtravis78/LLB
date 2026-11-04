@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLB | Life • Legacy • Bereavement</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D8C3A5;
+            --gold-secondary: #A38E70;
+            --silver: #6A7B8C;
+            --silver-secondary: #485664;
+            --dark-bg: #2C353D;
+            --light-bg: #F9F8F6;
+            --white: #FFFFFF;
+            --text-main: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- Navigation Bar --- */
+        header {
+            background-color: var(--silver-secondary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-logo-text {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a, .dropbtn {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-menu a:hover, .dropbtn:hover {
+            background-color: var(--silver);
+            color: var(--gold);
+        }
+
+        /* Dropdown styling */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 240px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-radius: 6px;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+            z-index: 1001;
+        }
+
+        .dropdown-content a {
+            color: var(--text-main);
+            padding: 10px 16px;
+            display: block;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--gold);
+            color: var(--silver-secondary);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .btn-access {
+            background-color: var(--gold) !important;
+            color: var(--silver-secondary) !important;
+            font-weight: 600 !important;
+        }
+
+        .btn-access:hover {
+            background-color: var(--gold-secondary) !important;
+            color: var(--white) !important;
+        }
+
+        /* --- Logo Banner Section --- */
+        .banner-section {
+            background: linear-gradient(135deg, var(--silver), var(--silver-secondary));
+            text-align: center;
+            padding: 3rem 1rem;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .banner-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .banner-logo {
+            max-width: 220px;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            background: var(--white);
+            padding: 10px;
+        }
+
+        .banner-section h1 {
+            color: var(--white);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .banner-section p {
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Main Content Layout --- */
+        .main-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--silver-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--gold-secondary);
+            font-weight: 500;
+        }
+
+        /* --- Modules Grid --- */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .module-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--gold);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .module-card h3 {
+            color: var(--silver-secondary);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .module-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .module-tag {
+            align-self: flex-start;
+            background-color: rgba(106, 123, 140, 0.1);
+            color: var(--silver);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* --- Pricing / Plans Section --- */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .plan-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            border: 2px solid #e1e4e8;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .plan-card.featured {
+            border-color: var(--gold-secondary);
+            transform: scale(1.02);
+        }
+
+        .plan-card h3 {
+            color: var(--silver-secondary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-audience {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .plan-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--silver-secondary);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+
+        .plan-price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #666;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            font-size: 0.92rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: var(--gold-secondary);
+            font-weight: bold;
+        }
+
+        .btn-plan {
+            display: block;
+            text-align: center;
+            background-color: var(--silver-secondary);
+            color: var(--white);
+            padding: 0.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-plan:hover {
+            background-color: var(--gold-secondary);
+            color: var(--white);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--silver-secondary);
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 4rem;
+            border-top: 4px solid var(--gold);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* Can be expanded with a mobile toggle JS script if needed */
+            }
+            .banner-section h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo-text">LLB Platform</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                
+                <!-- Services Modules Dropdown -->
+                <li class="dropdown">
+                    <button class="dropbtn">Services ▼</button>
+                    <div class="dropdown-content">
+                        <a href="#modules">Vitals & Identity</a>
+                        <a href="#modules">Family & Background</a>
+                        <a href="#modules">Military & Civic Records</a>
+                        <a href="#modules">Disposition & Vendor Hub</a>
+                        <a href="#modules">Photo & Historical Archive</a>
+                        <a href="#modules">Financial & Insurance Vault</a>
+                        <a href="#modules">Household & Digital Assets</a>
+                    </div>
+                </li>
+
+                <!-- Doula Services Dropdown (Placeholder) -->
+                <li class="dropdown">
+                    <button class="dropbtn">Doula Services ▼</button>
+                    <div class="dropdown-content">
+                        <a href="#doula-directory">Doula Directory (Coming Soon)</a>
+                        <a href="#doula-support">Human Doula Retainers</a>
+                    </div>
+                </li>
+
+                <li><a href="#financing">Financing</a></li>
+                <li><a href="#plans">Plans</a></li>
+                <li><a href="https://griffinjtravis78.github.io/LLB-Platform/" target="_blank" class="btn-access">Access Account</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Logo Banner Section -->
+    <div class="banner-section">
+        <div class="banner-content">
+            <!-- Ensure LLB.Jpeg is in the exact same directory in your GitHub repository -->
+            <img src="LLB.Jpeg" alt="LLB Life Legacy Bereavement Logo" class="banner-logo">
+            <h1>Life • Legacy • Bereavement</h1>
+            <p>Your centralized enterprise-grade end-of-life platform, digital vault, and estate planning hub.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+
+        <!-- Services / Modules Description Section -->
+        <section id="modules">
+            <div class="section-title">
+                <h2>Our Online Services & Modules</h2>
+                <p>Designed to secure your vital records, preserve your unique history, and ease the burden on loved ones.</p>
+            </div>
+
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div>
+                        <h3>Vitals, Parents & Background</h3>
+                        <p>Securely stores essential demographic data, vital statistics, parental lineage histories, and legal identifiers required for official documentation.</p>
+                    </div>
+                    <span class="module-tag">Modules 1–2</span>
+                </div>
+
+                <div class="module-card">
+                    <div>
+                        <h3>Education, Employment & Civic</h3>
+                        <p>Maintains a comprehensive log of educational milestones, career histories, professional credentials, and community or civic memberships.</p>
+                    </div>
+                    <span class="module-tag">Modules 3–6</span>
+                </div>
+
+                <div class="module-card">
+                    <div>
+                        <h3>Military, Cultural & Faith Records</h3>
+                        <p>Dedicated space for service records (such as DD-214 uploads), tribal or cultural traditions, and spiritual or religious ceremony guidelines[cite: 3].</p>
+                    </div>
+                    <span class="module-tag">Modules 7–8</span>
+                </div>
+
+                <div class="module-card">
+                    <div>
+                        <h3>Disposition & Vendor Hub</h3>
+                        <p>Manages pre-paid funeral contracts, cemetery plot details, memorial preferences, and direct coordination links with service providers[cite: 3].</p>
+                    </div>
+                    <span class="module-tag">Module 9</span>
+                </div>
+
+                <div class="module-card">
+                    <div>
+                        <h3>Photo & Historical Story Archive</h3>
+                        <p>Preserves high-resolution family photo galleries alongside multi-media historical storytelling archives linked directly to memorial speakers[cite: 3].</p>
+                    </div>
+                    <span class="module-tag">Modules 12–13</span>
+                </div>
+
+                <div class="module-card">
+                    <div>
+                        <h3>Financial, Insurance & Property Vault</h3>
+                        <p>An encrypted digital safe for deeds, account numbers, insurance policies, digital asset recovery info, and physical storage box locations[cite: 3].</p>
+                    </div>
+                    <span class="module-tag">Modules 15–18</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doula Directory Placeholder Section -->
+        <section id="doula-directory">
+            <div class="section-title">
+                <h2>Doula Services Directory</h2>
+                <p>Connect with certified end-of-life and death doulas for compassionate, high-touch support.</p>
+            </div>
+            <div style="background: var(--white); padding: 3rem; border-radius: 8px; text-align: center; border: 2px dashed var(--gold-secondary);">
+                <h3 style="color: var(--silver-secondary); margin-bottom: 1rem;">Directory Functionality Coming Soon</h3>
+                <p style="color: #666; max-width: 600px; margin: 0 auto 1.5rem auto;">We are building a comprehensive professional network to match families with qualified end-of-life doulas. Stay tuned for directory listings, direct booking tools, and concierge coordination.</p>
+                <span class="module-tag" style="background-color: var(--gold); color: var(--silver-secondary);">Placeholder Module</span>
+            </div>
+        </section>
+
+        <!-- Financing Placeholder Section -->
+        <section id="financing">
+            <div class="section-title">
+                <h2>Flexible Financing Options</h2>
+                <p>Transparent and manageable payment structures for your legacy planning and doula care.</p>
+            </div>
+            <div style="background: var(--white); padding: 3rem; border-radius: 8px; text-align: center; border: 2px dashed var(--gold-secondary);">
+                <h3 style="color: var(--silver-secondary); margin-bottom: 1rem;">Financing Portal Under Development</h3>
+                <p style="color: #666; max-width: 600px; margin: 0 auto 1.5rem auto;">We are partnering with financial institutions to offer flexible payment plans and installments for comprehensive estate setup packages and professional human doula retainers.</p>
+                <span class="module-tag" style="background-color: var(--gold); color: var(--silver-secondary);">Placeholder Module</span>
+            </div>
+        </section>
+
+        <!-- Plans & Pricing Section -->
+        <section id="plans">
+            <div class="section-title">
+                <h2>Platform Plans & Pricing</h2>
+                <p>Choose the track that fits your storage needs, estate complexity, and level of guidance[cite: 2, 3].</p>
+            </div>
+
+            <div class="plans-grid">
+                <!-- Tier 1 -->
+                <div class="plan-card">
+                    <div>
+                        <h3>Essential Legacy</h3>
+                        <div class="plan-audience">The "Starter" Track</div>
+                        <div class="plan-price">$49 <span>setup + $3.99/mo</span><br><small style="font-size: 0.8rem; font-weight: normal;">or $79 / year</small></div>
+                        <ul class="plan-features">
+                            <li>500 MB Encrypted Storage (Text & basic PDFs)[cite: 3]</li>
+                            <li>Full access to Vitals, Parents, Education, Employment, Civic & Faith modules[cite: 3]</li>
+                            <li>Single DD-214 military record upload[cite: 3]</li>
+                            <li>Capped at 10 high-resolution photos total[cite: 3]</li>
+                            <li>Max 3 historical stories & 1 service event itinerary[cite: 3]</li>
+                            <li>Basic financial text tracking (No deed uploads)[cite: 3]</li>
+                        </ul>
+                    </div>
+                    <a href="https://griffinjtravis78.github.io/LLB-Platform/" target="_blank" class="btn-plan">Select Essential</a>
+                </div>
+
+                <!-- Tier 2 -->
+                <div class="plan-card featured">
+                    <div>
+                        <h3>Comprehensive Estate</h3>
+                        <div class="plan-audience">The "Professional" Track</div>
+                        <div class="plan-price">$149 <span>setup + $7.99/mo</span><br><small style="font-size: 0.8rem; font-weight: normal;">or $199 / year</small></div>
+                        <ul class="plan-features">
+                            <li>10 GB Storage (Ample room for photo galleries & deeds)[cite: 3]</li>
+                            <li>Full, unlimited access to Modules 1–11 with add actions[cite: 3]</li>
+                            <li>Up to 100 high-resolution photos with auto-tagging[cite: 3]</li>
+                            <li>Up to 15 historical stories linked to speakers[cite: 3]</li>
+                            <li>Up to 3 multi-service event itineraries (Wake, Funeral, Graveside)[cite: 3]</li>
+                            <li>Full financial and insurance document/deed uploads[cite: 3]</li>
+                        </ul>
+                    </div>
+                    <a href="https://griffinjtravis78.github.io/LLB-Platform/" target="_blank" class="btn-plan">Select Comprehensive</a>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="plan-card">
+                    <div>
+                        <h3>Enterprise Heritage & Dynasty</h3>
+                        <div class="plan-audience">The "Master" Track</div>
+                        <div class="plan-price">$399 <span>setup + $19.99/mo</span><br><small style="font-size: 0.8rem; font-weight: normal;">or $599 / year</small></div>
+                        <ul class="plan-features">
+                            <li>100 GB+ High-capacity cloud storage (Audio/Video archives)[cite: 3]</li>
+                            <li>Completely Unlimited Access across all 18 modules[cite: 3]</li>
+                            <li>Unlimited photo vault items with C2PA metadata verification[cite: 3]</li>
+                            <li>Unlimited historical stories and multi-service itineraries[cite: 3]</li>
+                            <li>Advanced multi-proxy permission management for assets[cite: 3]</li>
+                            <li>Priority access to human doula on-demand escalation queues[cite: 3]</li>
+                        </ul>
+                    </div>
+                    <a href="https://griffinjtravis78.github.io/LLB-Platform/" target="_blank" class="btn-plan">Select Enterprise</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 LLB (Life • Legacy • Bereavement). All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #94a3b8;">Secure Enterprise End-of-Life ERP Platform</p>
+    </footer>
+
+</body>
+</html>
